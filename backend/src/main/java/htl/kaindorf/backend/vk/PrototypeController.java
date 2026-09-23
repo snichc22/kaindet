@@ -1,16 +1,14 @@
 package htl.kaindorf.backend.vk;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/vk/api")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:8081")
 public class PrototypeController {
     private final PrototypeService prototypeService;
 
