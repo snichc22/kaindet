@@ -26,9 +26,12 @@ afterEach(() => {
 
 describe("HomeScreen", () => {
   it("lädt und zeigt die Personen", () => {
-    expect(axios.get).toHaveBeenCalledWith("http://localhost:8080/vk/api");
+    expect(axios.get, "axios.get wurde nicht mit der erwarteten URL aufgerufen")
+        .toHaveBeenCalledWith("http://localhost:8080/vk/api");
+
     expect(
-        screen.getAllByText(/\(\d+\)$/).map((x: HTMLElement) => x.textContent)
+        screen.getAllByText(/\(\d+\)$/).map((x: HTMLElement) => x.textContent),
+        "Die Liste der angezeigten Personen entspricht nicht der erwarteten Reihenfolge/Anzeige"
     ).toEqual(["Max Muster (25)", "Tom Maier (17)", "Anna Huber (18)"]);
   });
 
@@ -36,16 +39,22 @@ describe("HomeScreen", () => {
     fireEvent.click(screen.getByRole("button", { name: "Sort People" }));
 
     expect(
-        screen.getAllByText(/\(\d+\)$/).map((x: HTMLElement) => x.textContent)
+        screen.getAllByText(/\(\d+\)$/).map((x: HTMLElement) => x.textContent),
+        "Nach Klick auf 'Sort People' ist die Sortierung nach Alter falsch"
     ).toEqual(["Tom Maier (17)", "Anna Huber (18)", "Max Muster (25)"]);
   });
 
   it("filtert Personen unter 18 heraus", () => {
     fireEvent.click(screen.getByRole("button", { name: "Filter ü. 18" }));
 
-    expect(screen.queryByText("Tom Maier (17)")).toBeNull();
     expect(
-        screen.getAllByText(/\(\d+\)$/).map((x: HTMLElement) => x.textContent)
+        screen.queryByText("Tom Maier (17)"),
+        "Tom Maier (17) hätte nach dem Filtern nicht mehr angezeigt werden dürfen"
+    ).toBeNull();
+
+    expect(
+        screen.getAllByText(/\(\d+\)$/).map((x: HTMLElement) => x.textContent),
+        "Nach dem Filtern stimmt die verbleibende Personenliste nicht"
     ).toEqual(["Max Muster (25)", "Anna Huber (18)"]);
   });
 });
