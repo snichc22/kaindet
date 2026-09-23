@@ -2,8 +2,9 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 type Person = {
-  firstname: string;
-  lastname: string;
+  id: number;
+  firstName: string;
+  lastName: string;
   email: string;
   age: number;
 };
@@ -13,6 +14,7 @@ export default function HomeScreen() {
 
   async function getPeople() {
     const response = await axios.get("http://localhost:8080/vk/api");
+    console.log(response.data);
     setPeople(response.data);
   }
 
@@ -31,8 +33,8 @@ export default function HomeScreen() {
   return (
       <div>
         {people.map((x, i) => (
-            <div key={i}>
-              {x.firstname} {x.lastname} ({x.age})
+            <div key={x.id}>
+              {x.firstName} {x.lastName} - Age {x.age}
             </div>
         ))}
 
