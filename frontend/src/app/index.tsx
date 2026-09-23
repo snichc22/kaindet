@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 type Person = {
   firstname: string;
   lastname: string;
+  email: string;
   age: number;
 };
 
