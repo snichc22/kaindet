@@ -14,6 +14,9 @@ spring:
     password: ${POSTGRES_PASSWORD:kaindet_dev}
   main:
     banner-mode: off
+  sql:
+    init:
+      mode: always
   jpa:
     hibernate:
       ddl-auto: update
@@ -21,3 +24,4 @@ spring:
     properties:
       hibernate:
         format_sql: true
+    defer-datasource-initialization: true
