@@ -12,4 +12,5 @@ public class PrototypePeopleEntity {
     private String firstName;
     private String lastName;
     private String email;
+    private Integer age;
 }

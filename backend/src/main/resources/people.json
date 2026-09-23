@@ -3,48 +3,56 @@
     "id": 1,
     "firstName": "Anna",
     "lastName": "Miller",
-    "email": "anna.miller@example.com"
+    "email": "anna.miller@example.com",
+    "age": 24
   },
   {
     "id": 2,
     "firstName": "Lukas",
     "lastName": "Gruber",
-    "email": "lukas.gruber@example.com"
+    "email": "lukas.gruber@example.com",
+    "age": 31
   },
   {
     "id": 3,
     "firstName": "Mia",
     "lastName": "Huber",
-    "email": "mia.huber@example.com"
+    "email": "mia.huber@example.com",
+    "age": 19
   },
   {
     "id": 4,
     "firstName": "Noah",
     "lastName": "Wagner",
-    "email": "noah.wagner@example.com"
+    "email": "noah.wagner@example.com",
+    "age": 27
   },
   {
     "id": 5,
     "firstName": "Emma",
     "lastName": "Bauer",
-    "email": "emma.bauer@example.com"
+    "email": "emma.bauer@example.com",
+    "age": 36
   },
   {
     "id": 6,
     "firstName": "Leon",
     "lastName": "Steiner",
-    "email": "leon.steiner@example.com"
+    "email": "leon.steiner@example.com",
+    "age": 22
   },
   {
     "id": 7,
     "firstName": "Lea",
     "lastName": "Hofer",
-    "email": "lea.hofer@example.com"
+    "email": "lea.hofer@example.com",
+    "age": 29
   },
   {
     "id": 8,
     "firstName": "Paul",
     "lastName": "Moser",
-    "email": "paul.moser@example.com"
+    "email": "paul.moser@example.com",
+    "age": 42
   }
 ]

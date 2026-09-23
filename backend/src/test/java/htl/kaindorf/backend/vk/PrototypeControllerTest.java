@@ -1,33 +1,29 @@
 package htl.kaindorf.backend.vk;
 
-import org.junit.jupiter.api.BeforeEach;
+import htl.kaindorf.backend.SecurityConfiguration;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
+import org.springframework.context.annotation.Import;
 import org.springframework.test.web.servlet.MockMvc;
-import tools.jackson.databind.json.JsonMapper;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
+@WebMvcTest(PrototypeController.class)
+@Import({PrototypeService.class, PrototypeInit.class, SecurityConfiguration.class})
 class PrototypeControllerTest {
+
+    @Autowired
     private MockMvc mockMvc;
 
-    @BeforeEach
-    void setUp() throws Exception {
-        JsonMapper jsonMapper = JsonMapper.builder().build();
-        PrototypeInit prototypeInit = new PrototypeInit(jsonMapper);
-        PrototypeService prototypeService = new PrototypeService(prototypeInit);
-        PrototypeController prototypeController = new PrototypeController(prototypeService);
-
-        mockMvc = standaloneSetup(prototypeController).build();
-    }
-
     @Test
-    void returnsAllPeople() throws Exception {
+    void returnsAllPeopleWithoutLogin() throws Exception {
         mockMvc.perform(get("/vk/api"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.length()").value(8));
+                .andExpect(jsonPath("$.length()").value(8))
+                .andExpect(jsonPath("$[0].age").value(24));
     }
 
     @Test
