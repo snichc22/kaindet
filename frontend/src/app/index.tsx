@@ -31,20 +31,31 @@ export default function HomeScreen() {
   }, []);
 
   return (
-      <div>
-        {people.map((x, i) => (
+      <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: 8,
+            padding: "24px 0",
+            fontFamily: "sans-serif",
+          }}
+      >
+        {people.map((x) => (
             <div key={x.id}>
-              {x.firstName} {x.lastName} - Age {x.age}
+              {x.firstName} {x.lastName} ({x.age})
             </div>
         ))}
 
-        <button onClick={() => setPeople(sortPeople(people))}>
-          Sort People
-        </button>
+        <div style={{ display: "flex", gap: 12, marginTop: 24 }}>
+          <button onClick={() => setPeople(sortPeople(people))}>
+            Sort People
+          </button>
 
-        <button onClick={() => setPeople(filterPeople(people))}>
-          Filter ü. 18
-        </button>
+          <button onClick={() => setPeople(filterPeople(people))}>
+            Filter ü. 18
+          </button>
+        </div>
       </div>
   );
 }
