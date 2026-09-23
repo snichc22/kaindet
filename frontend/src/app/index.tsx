@@ -11,16 +11,16 @@ export default function HomeScreen() {
   const [people, setPeople] = useState<Person[]>([]);
 
   async function getPeople() {
-    const response = await axios.get("http://localhost:3000/vk/api");
+    const response = await axios.get("http://localhost:8080/vk/api");
     setPeople(response.data);
   }
 
-  function sortPeople(){
-
+  function sortPeople(list: Person[]): Person[] {
+    return [...list].sort((a, b) => a.age - b.age);
   }
 
-  function filterPeople(){
-
+  function filterPeople(list: Person[]): Person[] {
+    return list.filter((person) => person.age >= 18);
   }
 
   useEffect(() => {
@@ -34,6 +34,14 @@ export default function HomeScreen() {
               {x.firstname} {x.lastname} ({x.age})
             </div>
         ))}
+
+        <button onClick={() => setPeople(sortPeople(people))}>
+          Sort People
+        </button>
+
+        <button onClick={() => setPeople(filterPeople(people))}>
+          Filter ü. 18
+        </button>
       </div>
   );
 }
